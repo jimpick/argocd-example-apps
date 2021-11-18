@@ -37,8 +37,9 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
-  type: ClusterIP
-  port: 80
+  type: LoadBalancer
+  port: 8092
+  externalIP: 192.168.105.1
 
 ingress:
   enabled: false
@@ -80,3 +81,9 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+port: 8085
+
+env:
+  - name: "PORT"
+    value: "8085"

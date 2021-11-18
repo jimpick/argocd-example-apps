@@ -11,5 +11,7 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+  externalIPs:
+  - {{ .Values.service.externalIP }}
   selector:
     {{- include "github-actions-playground-go-example.selectorLabels" . | nindent 4 }}
