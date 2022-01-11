@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "hexcamp-homepage.fullname" . }}
+  labels:
+    {{- include "hexcamp-homepage.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  externalIPs:
+  - {{ .Values.service.externalIP }}
+  selector:
+    {{- include "hexcamp-homepage.selectorLabels" . | nindent 4 }}
